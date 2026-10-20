@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Produk - Sales Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div>
+                <h2>Sales Monitor</h2>
+                <span>PT Mustika Ratu</span>
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="produk.html" class="menu-item active">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+
+            <a href="outlet.html" class="menu-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Outlet</span>
+            </a>
+
+           <a href="penjualan.html" class="menu-item">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>Penjualan</span>
+</a>
+
+            <a href="barang-masuk.html" class="menu-item">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Barang Masuk</span>
+            </a>
+
+            <a href="monitoring.html" class="menu-item">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Monitoring</span>
+            </a>
+
+           <a href="laporan.html" class="menu-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Laporan</span>
+            </a>
+
+            <div class="menu-divider"></div>
+
+            <a href="pengaturan.html" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+
+            <a href="#" class="menu-item" onclick="logout(event)">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Cari produk, outlet, atau data penjualan..."
+                >
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>3</span>
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Admin</strong>
+
+                        <span>Administrator</span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+        <section class="content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+
+                    <div class="breadcrumb">
+                        Dashboard / Produk
+                    </div>
+
+                    <h1>
+                        Data Produk
+                    </h1>
+
+                    <p>
+                        Kelola data produk dan stok produk PT Mustika Ratu.
+                    </p>
+
+                </div>
+
+                <button
+    type="button"
+    id="addProductBtn"
+    class="btn-primary">
+
+    <i class="fa-solid fa-plus"></i>
+
+    Tambah Produk
+
+</button>
+            </div>
+
+
+            <!-- ================= SUMMARY ================= -->
+
+            <div class="summary-grid">
+
+                <!-- TOTAL PRODUK -->
+                <div class="summary-card">
+
+                    <div class="summary-icon green">
+
+                        <i class="fa-solid fa-box"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Total Produk</span>
+
+                        <strong id="totalProduct">
+                            5
+                        </strong>
+
+                        <small>
+                            Produk terdaftar
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL STOK -->
+                <div class="summary-card">
+
+                    <div class="summary-icon blue">
+
+                        <i class="fa-solid fa-cubes"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Total Stok</span>
+
+                        <strong id="totalStock">
+                            115
+                        </strong>
+
+                        <small>
+                            Unit tersedia
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STOK MENIPIS -->
+                <div class="summary-card">
+
+                    <div class="summary-icon orange">
+
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Stok Menipis</span>
+
+                        <strong id="lowStock">
+                            1
+                        </strong>
+
+                        <small>
+                            Perlu diperhatikan
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STOK HABIS -->
+                <div class="summary-card">
+
+                    <div class="summary-icon red">
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>Stok Habis</span>
+
+                        <strong id="emptyStock">
+                            1
+                        </strong>
+
+                        <small>
+                            Perlu restock
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FILTER ================= -->
+
+            <div class="filter-section">
+
+                <div class="filter-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchProduct"
+                        placeholder="Cari kode atau nama produk..."
+                    >
+
+                </div>
+
+
+                <select id="categoryFilter">
+
+                    <option value="">
+                        Semua Kategori
+                    </option>
+
+                    <option>
+                        Skincare
+                    </option>
+
+                    <option>
+                        Make Up
+                    </option>
+
+                    <option>
+                        Perawatan Tubuh
+                    </option>
+
+                    <option>
+                        Pembersih
+                    </option>
+
+                </select>
+
+
+                <select id="statusProductFilter">
+
+                    <option value="">
+                        Semua Status
+                    </option>
+
+                    <option>
+                        Tersedia
+                    </option>
+
+                    <option>
+                        Stok Menipis
+                    </option>
+
+                    <option>
+                        Stok Habis
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="btn-reset"
+                    onclick="resetProductFilter()">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= TABLE ================= -->
+
+            <div class="table-card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-box"></i>
+
+                            Daftar Produk
+
+                        </h2>
+
+                        <p id="productCount">
+                            Menampilkan 5 produk
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-export"
+                        onclick="exportProductCSV()">
+
+                        <i class="fa-solid fa-file-excel"></i>
+
+                        Export Excel
+
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table id="productTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Kode Produk
+                                </th>
+
+                                <th>
+                                    Nama Produk
+                                </th>
+
+                                <th>
+                                    Kategori
+                                </th>
+
+                                <th>
+                                    Harga
+                                </th>
+
+                                <th>
+                                    Stok
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <!-- PRODUK 1 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="product-code">
+                                        MR001
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-leaf"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Mustika Ratu Whitening
+                                            </strong>
+
+                                            <span>
+                                                Skincare
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    Skincare
+                                </td>
+
+
+                                <td>
+                                    Rp 85.000
+                                </td>
+
+
+                                <td>
+                                    45
+                                </td>
+
+
+                                <td>
+
+                                    <span class="stock-status available">
+                                        Tersedia
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="delete-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- PRODUK 2 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="product-code">
+                                        MR002
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-paintbrush"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Purbasari Lipstick
+                                            </strong>
+
+                                            <span>
+                                                Make Up
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    Make Up
+                                </td>
+
+
+                                <td>
+                                    Rp 42.000
+                                </td>
+
+
+                                <td>
+                                    28
+                                </td>
+
+
+                                <td>
+
+                                    <span class="stock-status available">
+                                        Tersedia
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="delete-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- PRODUK 3 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="product-code">
+                                        MR003
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-bottle-droplet"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Hand & Body Lotion
+                                            </strong>
+
+                                            <span>
+                                                Perawatan Tubuh
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    Perawatan Tubuh
+                                </td>
+
+
+                                <td>
+                                    Rp 50.000
+                                </td>
+
+
+                                <td>
+                                    25
+                                </td>
+
+
+                                <td>
+
+                                    <span class="stock-status available">
+                                        Tersedia
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="delete-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- PRODUK 4 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="product-code">
+                                        MR004
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Sabun Herba
+                                            </strong>
+
+                                            <span>
+                                                Pembersih
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    Pembersih
+                                </td>
+
+
+                                <td>
+                                    Rp 35.000
+                                </td>
+
+
+                                <td>
+                                    15
+                                </td>
+
+
+                                <td>
+
+                                    <span class="stock-status low">
+                                        Stok Menipis
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="delete-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- PRODUK 5 -->
+
+                            <tr>
+
+                                <td>
+
+                                    <span class="product-code">
+                                        MR005
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-box"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Bedak Beauty
+                                            </strong>
+
+                                            <span>
+                                                Make Up
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    Make Up
+                                </td>
+
+
+                                <td>
+                                    Rp 65.000
+                                </td>
+
+
+                                <td>
+                                    0
+                                </td>
+
+
+                                <td>
+
+                                    <span class="stock-status out">
+                                        Stok Habis
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+                                        <button
+                                            class="delete-btn"
+                                            type="button">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- TABLE FOOTER -->
+
+                <div class="table-footer">
+
+                    <span id="productFooterCount">
+                        Menampilkan 1–5 dari 5 produk
+                    </span>
+
+                    <div class="pagination">
+
+                        <button>
+                            ‹
+                        </button>
+
+                        <button class="active">
+                            1
+                        </button>
+
+                        <button>
+                            2
+                        </button>
+
+                        <button>
+                            3
+                        </button>
+
+                        <button>
+                            4
+                        </button>
+
+                        <button>
+                            5
+                        </button>
+
+                        <button>
+                            ›
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="footer">
+
+            <span>
+                © 2026 Sales Monitor. All rights reserved.
+            </span>
+
+            <span>
+                PT Mustika Ratu | Kecantikan untuk Kehidupan yang Lebih Baik
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL TAMBAH PRODUK ================= -->
+
+<div
+    class="modal-overlay"
+    id="productModal">
+
+    <div class="product-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="productModalTitle">
+                    Tambah Produk
+                </h2>
+
+                <p>
+                    Masukkan informasi produk
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                id="closeModal"
+                type="button">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <input
+                type="hidden"
+                id="productId">
+
+
+            <div class="form-grid">
+
+                <!-- KODE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Kode Produk
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productCode"
+                        placeholder="Contoh: MR006"
+                        required>
+
+                </div>
+
+
+                <!-- NAMA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Nama Produk
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Nama produk"
+                        required>
+
+                </div>
+
+
+                <!-- KATEGORI -->
+
+                <div class="form-group">
+
+                    <label>
+                        Kategori
+                    </label>
+
+                    <select
+                        id="category"
+                        required>
+
+                        <option value="">
+                            Pilih Kategori
+                        </option>
+
+                        <option>
+                            Skincare
+                        </option>
+
+                        <option>
+                            Make Up
+                        </option>
+
+                        <option>
+                            Perawatan Tubuh
+                        </option>
+
+                        <option>
+                            Pembersih
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- HARGA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Harga
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        placeholder="Contoh: 50000"
+                        min="0"
+                        required>
+
+                </div>
+
+
+                <!-- STOK -->
+
+                <div class="form-group">
+
+                    <label>
+                        Stok
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stock"
+                        placeholder="Jumlah stok"
+                        min="0"
+                        required>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select
+                        id="status"
+                        required>
+
+                        <option value="">
+                            Pilih Status
+                        </option>
+
+                        <option value="available">
+                            Tersedia
+                        </option>
+
+                        <option value="low">
+                            Stok Menipis
+                        </option>
+
+                        <option value="out">
+                            Stok Habis
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODAL FOOTER -->
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    id="cancelBtn">
+
+                    Batal
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Simpan Produk
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function logout(event) {
+    event.preventDefault();
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin logout?"
+    );
+
+    if (yakin) {
+        window.location.href = "login.html";
+    }
+}
+</script>
+
+</body>
+</html>

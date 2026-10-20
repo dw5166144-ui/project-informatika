@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Sales Monitor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo"><i class="fa-solid fa-leaf"></i></div>
+      <div><h2>Sales Monitor</h2><span>PT Mustika Ratu</span></div>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="menu-item active"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+      <a href="produk.html" class="menu-item"><i class="fa-solid fa-box"></i><span>Produk</span></a>
+      <a href="outlet.html" class="menu-item"><i class="fa-solid fa-store"></i><span>Outlet</span></a>
+    <a href="penjualan.html" class="menu-item">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>Penjualan</span>
+</a>
+      <a href="barang-masuk.html" class="menu-item"><i class="fa-solid fa-box-open"></i><span>Barang Masuk</span></a>
+      <a href="monitoring.html" class="menu-item"><i class="fa-solid fa-chart-column"></i><span>Monitoring</span></a>
+      <a href="laporan.html" class="menu-item"><i class="fa-solid fa-file-lines"></i><span>Laporan</span></a>
+      <div class="menu-divider"></div>
+      <a href="pengaturan.html" class="menu-item"><i class="fa-solid fa-gear"></i><span>Pengaturan</span></a>
+      <a href="#" class="menu-item" onclick="logout(event)">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-btn" aria-label="Buka menu"><i class="fa-solid fa-bars"></i></button>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Cari produk, outlet, atau data penjualan...">
+      </div>
+      <div class="topbar-right">
+        <div class="notification"><i class="fa-regular fa-bell"></i><span>3</span></div>
+        <div class="profile">
+          <div class="profile-avatar">A</div>
+          <div class="profile-info"><strong>Admin</strong><span>Administrator</span></div>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="page-header">
+        <div>
+          <div class="breadcrumb">Dashboard</div>
+          <h1>Dashboard</h1>
+          <p>Ringkasan monitoring penjualan PT Mustika Ratu.</p>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-icon green"><i class="fa-solid fa-box"></i></div>
+          <div><span>Total Produk</span><strong>5 Produk</strong><small>Produk terdaftar</small></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon blue"><i class="fa-solid fa-store"></i></div>
+          <div><span>Total Outlet</span><strong>5 Outlet</strong><small>Outlet terdaftar</small></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon orange"><i class="fa-solid fa-chart-line"></i></div>
+          <div><span>Total Penjualan</span><strong>Rp 134,8 Jt</strong><small>Akumulasi penjualan</small></div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon purple"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div><span>Wilayah</span><strong>5</strong><small>Wilayah operasional</small></div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="dashboard-card outlet-summary">
+          <div class="dashboard-card-header">
+            <div>
+              <h2><i class="fa-solid fa-chart-column"></i> Ringkasan Outlet</h2>
+              <p>Data singkat penjualan berdasarkan outlet.</p>
+            </div>
+            <a href="outlet.html" class="view-link">Lihat Data Outlet <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="dashboard-table-wrap">
+            <table class="dashboard-table">
+              <thead><tr><th>Outlet</th><th>Wilayah</th><th>Penjualan</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Mustika Ratu Surabaya</strong></td><td>Surabaya</td><td><strong>Rp 42.500.000</strong></td><td><span class="stock-status available">Aktif</span></td></tr>
+                <tr><td><strong>Mustika Ratu Sidoarjo</strong></td><td>Sidoarjo</td><td><strong>Rp 35.750.000</strong></td><td><span class="stock-status available">Aktif</span></td></tr>
+                <tr><td><strong>Mustika Ratu Malang</strong></td><td>Malang</td><td><strong>Rp 28.200.000</strong></td><td><span class="stock-status available">Aktif</span></td></tr>
+                <tr><td><strong>Mustika Ratu Kediri</strong></td><td>Kediri</td><td><strong>Rp 19.850.000</strong></td><td><span class="stock-status available">Aktif</span></td></tr>
+                <tr><td><strong>Mustika Ratu Gresik</strong></td><td>Gresik</td><td><strong>Rp 8.500.000</strong></td><td><span class="stock-status low">Tidak Aktif</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dashboard-card sales-chart">
+          <div class="dashboard-card-header">
+            <div>
+              <h2><i class="fa-solid fa-chart-simple"></i> Penjualan per Wilayah</h2>
+              <p>Perbandingan total penjualan outlet.</p>
+            </div>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-row"><span>Surabaya</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>42,5 Jt</strong></div>
+            <div class="bar-row"><span>Sidoarjo</span><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div><strong>35,75 Jt</strong></div>
+            <div class="bar-row"><span>Malang</span><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div><strong>28,2 Jt</strong></div>
+            <div class="bar-row"><span>Kediri</span><div class="bar-track"><div class="bar-fill" style="width:47%"></div></div><strong>19,85 Jt</strong></div>
+            <div class="bar-row"><span>Gresik</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><strong>8,5 Jt</strong></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer"><span>© 2026 Sales Monitor. All rights reserved.</span><span>PT Mustika Ratu</span></footer>
+  </main>
+</div>
+<script>
+function logout(event) {
+    event.preventDefault();
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin logout?"
+    );
+
+    if (yakin) {
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+</html>

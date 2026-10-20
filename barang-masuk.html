@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barang Masuk - Sales Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            <div>
+                <h2>Sales Monitor</h2>
+                <span>PT Mustika Ratu</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html" class="menu-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="produk.html" class="menu-item">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+
+            <a href="outlet.html" class="menu-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Outlet</span>
+            </a>
+
+            <a href="penjualan.html" class="menu-item">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Penjualan</span>
+            </a>
+
+            <a href="barang-masuk.html" class="menu-item active">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Barang Masuk</span>
+            </a>
+
+            <a href="monitoring.html" class="menu-item">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Monitoring</span>
+            </a>
+
+            <a href="laporan.html" class="menu-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Laporan</span>
+            </a>
+
+            <div class="menu-divider"></div>
+
+           <a href="pengaturan.html" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+
+           <a href="#" class="menu-item" onclick="logout(event)">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <button class="menu-btn" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="topSearch"
+                       type="text"
+                       placeholder="Cari produk, outlet, atau data...">
+            </div>
+
+            <div class="topbar-right">
+                <div class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>3</span>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-avatar">A</div>
+                    <div class="profile-info">
+                        <strong>Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <section class="content">
+
+            <!-- HEADER -->
+            <div class="page-header">
+                <div>
+                    <div class="breadcrumb">Dashboard / Barang Masuk</div>
+                    <h1>Barang Masuk</h1>
+                    <p>Kelola data barang yang masuk ke PT Mustika Ratu.</p>
+                </div>
+
+                <button class="btn-primary" type="button" onclick="openIncomingModal()">
+                    <i class="fa-solid fa-plus"></i>
+                    Tambah Barang Masuk
+                </button>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-icon green">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div>
+                        <span>Total Penerimaan</span>
+                        <strong id="totalPenerimaan">128</strong>
+                        <small>Transaksi barang masuk</small>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon blue">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <div>
+                        <span>Total Barang</span>
+                        <strong id="totalBarang">1.250</strong>
+                        <small>Unit diterima</small>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon orange">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <div>
+                        <span>Barang Hari Ini</span>
+                        <strong id="barangHariIni">125</strong>
+                        <small>Unit masuk hari ini</small>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon purple">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div>
+                        <span>Supplier</span>
+                        <strong id="totalSupplier">5</strong>
+                        <small>Supplier tercatat</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTER -->
+            <div class="filter-section">
+                <div class="filter-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="incomingSearch"
+                           type="text"
+                           placeholder="Cari kode, produk, supplier, atau outlet...">
+                </div>
+
+                <select id="incomingOutlet">
+                    <option value="">Semua Outlet</option>
+                    <option>Mustika Ratu Surabaya</option>
+                    <option>Mustika Ratu Sidoarjo</option>
+                    <option>Mustika Ratu Malang</option>
+                    <option>Mustika Ratu Kediri</option>
+                    <option>Mustika Ratu Gresik</option>
+                </select>
+
+                <select id="incomingPeriod">
+                    <option value="">Semua Periode</option>
+                    <option value="hari">Hari Ini</option>
+                    <option value="minggu">Minggu Ini</option>
+                    <option value="bulan">Bulan Ini</option>
+                </select>
+
+                <button class="btn-reset" type="button" onclick="resetIncomingFilter()">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Reset
+                </button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-card">
+                <div class="table-header">
+                    <div>
+                        <h2>
+                            <i class="fa-solid fa-box-open"></i>
+                            Daftar Barang Masuk
+                        </h2>
+                        <p id="incomingCount">Menampilkan 5 transaksi</p>
+                    </div>
+
+                    <button class="btn-export" type="button" onclick="exportIncoming()">
+                        <i class="fa-solid fa-file-excel"></i>
+                        Export Excel
+                    </button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kode Penerimaan</th>
+                                <th>Tanggal</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Supplier</th>
+                                <th>Outlet</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="incomingTable">
+                            <tr>
+                                <td><strong class="product-code">BM001</strong></td>
+                                <td>26/09/2026</td>
+                                <td>
+                                    <div class="product-name">
+                                        <div class="product-image">
+                                            <i class="fa-solid fa-pump-soap"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Hand &amp; Body Lotion</strong>
+                                            <span>MR001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>50 Unit</strong></td>
+                                <td>PT Mustika Jaya</td>
+                                <td>Mustika Ratu Surabaya</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="edit-btn" type="button" title="Edit">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+                                        <button class="delete-btn" type="button" title="Hapus">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong class="product-code">BM002</strong></td>
+                                <td>25/09/2026</td>
+                                <td>
+                                    <div class="product-name">
+                                        <div class="product-image">
+                                            <i class="fa-solid fa-pump-soap"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Sabun Herba</strong>
+                                            <span>MR002</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>40 Unit</strong></td>
+                                <td>CV Sejahtera</td>
+                                <td>Mustika Ratu Sidoarjo</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="edit-btn" type="button"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong class="product-code">BM003</strong></td>
+                                <td>24/09/2026</td>
+                                <td>
+                                    <div class="product-name">
+                                        <div class="product-image">
+                                            <i class="fa-solid fa-pump-soap"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Bedak Wangi</strong>
+                                            <span>MR003</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>30 Unit</strong></td>
+                                <td>PT Cantik Abadi</td>
+                                <td>Mustika Ratu Malang</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="edit-btn" type="button"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong class="product-code">BM004</strong></td>
+                                <td>23/09/2026</td>
+                                <td>
+                                    <div class="product-name">
+                                        <div class="product-image">
+                                            <i class="fa-solid fa-pump-soap"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Minyak Zaitun</strong>
+                                            <span>MR004</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>25 Unit</strong></td>
+                                <td>PT Mustika Jaya</td>
+                                <td>Mustika Ratu Kediri</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="edit-btn" type="button"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong class="product-code">BM005</strong></td>
+                                <td>22/09/2026</td>
+                                <td>
+                                    <div class="product-name">
+                                        <div class="product-image">
+                                            <i class="fa-solid fa-pump-soap"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Lulur Tradisional</strong>
+                                            <span>MR005</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>20 Unit</strong></td>
+                                <td>CV Sejahtera</td>
+                                <td>Mustika Ratu Gresik</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="edit-btn" type="button"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <span id="footerCount">5 transaksi ditampilkan</span>
+                    <div class="pagination">
+                        <button class="active" type="button">1</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <span>© 2026 Sales Monitor - PT Mustika Ratu</span>
+            <span>Data Barang Masuk</span>
+        </footer>
+    </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="incomingModal">
+    <div class="product-modal">
+        <div class="modal-header">
+            <div>
+                <h2>Tambah Barang Masuk</h2>
+                <p>Masukkan data penerimaan barang baru.</p>
+            </div>
+            <button class="modal-close" type="button" onclick="closeIncomingModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Kode Penerimaan</label>
+                <input id="bmKode" type="text" placeholder="Contoh: BM006">
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal</label>
+                <input id="bmTanggal" type="date">
+            </div>
+
+            <div class="form-group">
+                <label>Produk</label>
+                <select id="bmProduk">
+                    <option>Hand & Body Lotion</option>
+                    <option>Sabun Herba</option>
+                    <option>Bedak Wangi</option>
+                    <option>Minyak Zaitun</option>
+                    <option>Lulur Tradisional</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Jumlah</label>
+                <input id="bmJumlah" type="number" min="1" placeholder="Jumlah unit">
+            </div>
+
+            <div class="form-group">
+                <label>Supplier</label>
+                <input id="bmSupplier" type="text" placeholder="Nama supplier">
+            </div>
+
+            <div class="form-group">
+                <label>Outlet</label>
+                <select id="bmOutlet">
+                    <option>Mustika Ratu Surabaya</option>
+                    <option>Mustika Ratu Sidoarjo</option>
+                    <option>Mustika Ratu Malang</option>
+                    <option>Mustika Ratu Kediri</option>
+                    <option>Mustika Ratu Gresik</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancel" type="button" onclick="closeIncomingModal()">Batal</button>
+            <button class="btn-primary" type="button" onclick="saveIncoming()">Simpan</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openIncomingModal() {
+    document.getElementById("incomingModal").classList.add("show");
+}
+
+function closeIncomingModal() {
+    document.getElementById("incomingModal").classList.remove("show");
+}
+
+function applyIncomingFilter() {
+    const keyword = document.getElementById("incomingSearch").value.toLowerCase().trim();
+    const outlet = document.getElementById("incomingOutlet").value.toLowerCase();
+    const rows = document.querySelectorAll("#incomingTable tr");
+    let count = 0;
+
+    rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const cocokSearch = !keyword || text.includes(keyword);
+        const cocokOutlet = !outlet || text.includes(outlet);
+
+        const tampil = cocokSearch && cocokOutlet;
+        row.style.display = tampil ? "" : "none";
+
+        if (tampil) count++;
+    });
+
+    document.getElementById("incomingCount").textContent =
+        `Menampilkan ${count} transaksi`;
+
+    document.getElementById("footerCount").textContent =
+        `${count} transaksi ditampilkan`;
+}
+
+function resetIncomingFilter() {
+    document.getElementById("incomingSearch").value = "";
+    document.getElementById("incomingOutlet").value = "";
+    document.getElementById("incomingPeriod").value = "";
+    applyIncomingFilter();
+}
+
+function saveIncoming() {
+    const kode = document.getElementById("bmKode").value.trim();
+    const tanggal = document.getElementById("bmTanggal").value;
+    const produk = document.getElementById("bmProduk").value;
+    const jumlah = document.getElementById("bmJumlah").value;
+    const supplier = document.getElementById("bmSupplier").value.trim();
+    const outlet = document.getElementById("bmOutlet").value;
+
+    if (!kode || !tanggal || !jumlah || !supplier) {
+        alert("Lengkapi data barang masuk terlebih dahulu.");
+        return;
+    }
+
+    const tanggalTampil = new Date(tanggal + "T00:00:00")
+        .toLocaleDateString("id-ID");
+
+    const kodeProduk = {
+        "Hand & Body Lotion": "MR001",
+        "Sabun Herba": "MR002",
+        "Bedak Wangi": "MR003",
+        "Minyak Zaitun": "MR004",
+        "Lulur Tradisional": "MR005"
+    }[produk];
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td><strong class="product-code">${kode}</strong></td>
+        <td>${tanggalTampil}</td>
+        <td>
+            <div class="product-name">
+                <div class="product-image">
+                    <i class="fa-solid fa-pump-soap"></i>
+                </div>
+                <div>
+                    <strong>${produk}</strong>
+                    <span>${kodeProduk}</span>
+                </div>
+            </div>
+        </td>
+        <td><strong>${Number(jumlah).toLocaleString("id-ID")} Unit</strong></td>
+        <td>${supplier}</td>
+        <td>${outlet}</td>
+        <td>
+            <div class="table-actions">
+                <button class="edit-btn" type="button">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="delete-btn" type="button"
+                        onclick="this.closest('tr').remove(); applyIncomingFilter();">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </td>
+    `;
+
+    document.getElementById("incomingTable").prepend(row);
+
+    closeIncomingModal();
+    applyIncomingFilter();
+
+    document.getElementById("bmKode").value = "";
+    document.getElementById("bmTanggal").value = "";
+    document.getElementById("bmJumlah").value = "";
+    document.getElementById("bmSupplier").value = "";
+
+    alert("Barang masuk berhasil ditambahkan.");
+}
+
+function exportIncoming() {
+    alert("Fitur Export Excel bisa disambungkan setelah data barang masuk sudah final.");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("incomingSearch")
+        .addEventListener("input", applyIncomingFilter);
+
+    document.getElementById("incomingOutlet")
+        .addEventListener("change", applyIncomingFilter);
+
+    document.querySelector(".menu-btn")
+        ?.addEventListener("click", function () {
+            document.querySelector(".sidebar")?.classList.toggle("open");
+        });
+});
+</script>
+
+<script>
+function logout(event) {
+    event.preventDefault();
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin logout?"
+    );
+
+    if (yakin) {
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Penjualan - Sales Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+
+            <div>
+                <h2>Sales Monitor</h2>
+                <span>PT Mustika Ratu</span>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="produk.html" class="menu-item">
+                <i class="fa-solid fa-box"></i>
+                <span>Produk</span>
+            </a>
+
+            <a href="outlet.html" class="menu-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Outlet</span>
+            </a>
+
+            <a href="penjualan.html" class="menu-item active">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Penjualan</span>
+            </a>
+
+            <a href="barang-masuk.html" class="menu-item">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Barang Masuk</span>
+            </a>
+
+           <a href="monitoring.html" class="menu-item">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Monitoring</span>
+            </a>
+
+            <a href="laporan.html" class="menu-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Laporan</span>
+            </a>
+
+            <div class="menu-divider"></div>
+
+            <a href="pengaturan.html" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Pengaturan</span>
+            </a>
+
+           <a href="#" class="menu-item" onclick="logout(event)">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    placeholder="Cari produk, outlet, atau data penjualan..."
+                >
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>3</span>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>Admin</strong>
+                        <span>Administrator</span>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+
+            <!-- HEADER -->
+            <div class="page-header">
+
+                <div>
+
+                    <div class="breadcrumb">
+                        Dashboard / Penjualan
+                    </div>
+
+                    <h1>Data Penjualan</h1>
+
+                    <p>
+                        Kelola data transaksi penjualan PT Mustika Ratu.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    onclick="openSalesModal()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Tambah Penjualan
+
+                </button>
+
+            </div>
+
+
+
+            <!-- SUMMARY -->
+            <div class="summary-grid">
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon green">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Total Transaksi</span>
+
+                        <strong>128</strong>
+
+                        <small>Transaksi tercatat</small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon blue">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Total Penjualan</span>
+
+                        <strong>Rp 134,75 Jt</strong>
+
+                        <small>Nilai penjualan</small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon orange">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Produk Terjual</span>
+
+                        <strong>2.450</strong>
+
+                        <small>Unit produk</small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon purple">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Rata-rata Transaksi</span>
+
+                        <strong>Rp 1,05 Jt</strong>
+
+                        <small>Per transaksi</small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FILTER -->
+            <div class="filter-section">
+
+
+                <div class="filter-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        id="searchSales"
+                        type="text"
+                        placeholder="Cari kode transaksi, produk, atau outlet..."
+                    >
+
+                </div>
+
+
+                <select id="outletSalesFilter">
+
+                    <option>Semua Outlet</option>
+
+                    <option>
+                        Mustika Ratu Surabaya
+                    </option>
+
+                    <option>
+                        Mustika Ratu Sidoarjo
+                    </option>
+
+                    <option>
+                        Mustika Ratu Malang
+                    </option>
+
+                    <option>
+                        Mustika Ratu Kediri
+                    </option>
+
+                    <option>
+                        Mustika Ratu Gresik
+                    </option>
+
+                </select>
+
+
+                <select id="dateSalesFilter">
+
+                    <option>Semua Periode</option>
+
+                    <option>Hari Ini</option>
+
+                    <option>Minggu Ini</option>
+
+                    <option>Bulan Ini</option>
+
+                </select>
+
+
+                <button
+                    class="btn-reset"
+                    onclick="resetSalesFilter()">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+            <div class="table-card">
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                            Daftar Penjualan
+
+                        </h2>
+
+                        <p id="salesCount">
+                            Menampilkan 5 transaksi
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-export"
+                        onclick="exportSalesCSV()">
+
+                        <i class="fa-solid fa-file-excel"></i>
+
+                        Export Excel
+
+                    </button>
+
+                </div>
+
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Kode Transaksi</th>
+
+                                <th>Tanggal</th>
+
+                                <th>Outlet</th>
+
+                                <th>Produk</th>
+
+                                <th>Jumlah</th>
+
+                                <th>Total</th>
+
+                                <th>Aksi</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="salesTable">
+
+
+                            <tr>
+
+                                <td>
+
+                                    <strong class="product-code">
+                                        TRX001
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+                                    26/09/2026
+                                </td>
+
+
+                                <td>
+                                    Mustika Ratu Surabaya
+                                </td>
+
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-pump-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Hand & Body Lotion
+                                            </strong>
+
+                                            <span>
+                                                MR001
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td>
+                                    25 Unit
+                                </td>
+
+
+                                <td>
+                                    Rp 1.250.000
+                                </td>
+
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button
+                                            class="edit-btn"
+                                            title="Edit">
+
+                                            <i class="fa-solid fa-pen"></i>
+
+                                        </button>
+
+
+                                        <button
+                                            class="delete-btn"
+                                            title="Hapus">
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+
+                                    <strong class="product-code">
+                                        TRX002
+                                    </strong>
+
+                                </td>
+
+                                <td>
+                                    26/09/2026
+                                </td>
+
+                                <td>
+                                    Mustika Ratu Sidoarjo
+                                </td>
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-pump-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Sabun Herba
+                                            </strong>
+
+                                            <span>
+                                                MR002
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    30 Unit
+                                </td>
+
+                                <td>
+                                    Rp 1.050.000
+                                </td>
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button class="edit-btn">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+
+                                        <button class="delete-btn">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+
+                                    <strong class="product-code">
+                                        TRX003
+                                    </strong>
+
+                                </td>
+
+                                <td>
+                                    25/09/2026
+                                </td>
+
+                                <td>
+                                    Mustika Ratu Malang
+                                </td>
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-pump-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Bedak Wangi
+                                            </strong>
+
+                                            <span>
+                                                MR003
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    20 Unit
+                                </td>
+
+                                <td>
+                                    Rp 900.000
+                                </td>
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button class="edit-btn">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+
+                                        <button class="delete-btn">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+
+                                    <strong class="product-code">
+                                        TRX004
+                                    </strong>
+
+                                </td>
+
+                                <td>
+                                    24/09/2026
+                                </td>
+
+                                <td>
+                                    Mustika Ratu Kediri
+                                </td>
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-pump-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Minyak Zaitun
+                                            </strong>
+
+                                            <span>
+                                                MR004
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    15 Unit
+                                </td>
+
+                                <td>
+                                    Rp 630.000
+                                </td>
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button class="edit-btn">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+
+                                        <button class="delete-btn">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+
+                                    <strong class="product-code">
+                                        TRX005
+                                    </strong>
+
+                                </td>
+
+                                <td>
+                                    23/09/2026
+                                </td>
+
+                                <td>
+                                    Mustika Ratu Gresik
+                                </td>
+
+                                <td>
+
+                                    <div class="product-name">
+
+                                        <div class="product-image">
+
+                                            <i class="fa-solid fa-pump-soap"></i>
+
+                                        </div>
+
+                                        <div>
+
+                                            <strong>
+                                                Lulur Tradisional
+                                            </strong>
+
+                                            <span>
+                                                MR005
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    10 Unit
+                                </td>
+
+                                <td>
+                                    Rp 380.000
+                                </td>
+
+                                <td>
+
+                                    <div class="table-actions">
+
+                                        <button class="edit-btn">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </button>
+
+                                        <button class="delete-btn">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <div class="table-footer">
+
+                    <span id="salesFooterCount">
+                        Menampilkan 1–5 dari 5 transaksi
+                    </span>
+
+
+                    <div class="pagination">
+
+                        <button>‹</button>
+
+                        <button class="active">
+                            1
+                        </button>
+
+                        <button>2</button>
+
+                        <button>3</button>
+
+                        <button>4</button>
+
+                        <button>5</button>
+
+                        <button>›</button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <span>
+                © 2026 Sales Monitor. All rights reserved.
+            </span>
+
+            <span>
+                PT Mustika Ratu | Kecantikan untuk Kehidupan yang Lebih Baik
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- MODAL TAMBAH PENJUALAN -->
+
+<div
+    class="modal-overlay"
+    id="salesModal">
+
+
+    <div class="product-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Tambah Penjualan
+                </h2>
+
+                <p>
+                    Masukkan informasi transaksi penjualan
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                onclick="closeSalesModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <form id="salesForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Kode Transaksi
+                    </label>
+
+                    <input
+                        type="text"
+                        id="kodeTransaksi"
+                        placeholder="Contoh: TRX006"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Tanggal
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tanggalPenjualan"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Outlet
+                    </label>
+
+                    <select
+                        id="outletPenjualan"
+                        required>
+
+                        <option value="">
+                            Pilih Outlet
+                        </option>
+
+                        <option>
+                            Mustika Ratu Surabaya
+                        </option>
+
+                        <option>
+                            Mustika Ratu Sidoarjo
+                        </option>
+
+                        <option>
+                            Mustika Ratu Malang
+                        </option>
+
+                        <option>
+                            Mustika Ratu Kediri
+                        </option>
+
+                        <option>
+                            Mustika Ratu Gresik
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Produk
+                    </label>
+
+                    <select
+                        id="produkPenjualan"
+                        required>
+
+                        <option value="">
+                            Pilih Produk
+                        </option>
+
+                        <option value="Hand & Body Lotion">
+                            Hand & Body Lotion
+                        </option>
+
+                        <option value="Sabun Herba">
+                            Sabun Herba
+                        </option>
+
+                        <option value="Bedak Wangi">
+                            Bedak Wangi
+                        </option>
+
+                        <option value="Minyak Zaitun">
+                            Minyak Zaitun
+                        </option>
+
+                        <option value="Lulur Tradisional">
+                            Lulur Tradisional
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Jumlah
+                    </label>
+
+                    <input
+                        type="number"
+                        id="jumlahPenjualan"
+                        min="1"
+                        placeholder="Jumlah unit"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Total Penjualan
+                    </label>
+
+                    <input
+                        type="number"
+                        id="totalPenjualan"
+                        placeholder="Total harga"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="closeSalesModal()">
+
+                    Batal
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Simpan Penjualan
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+function logout(event) {
+    event.preventDefault();
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin logout?"
+    );
+
+    if (yakin) {
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+
+</html>

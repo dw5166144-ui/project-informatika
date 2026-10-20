@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Sales Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            background: #f3f7f5;
+        }
+
+        .login-page {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+
+            background: white;
+
+            border: 1px solid #e1e9e7;
+            border-radius: 20px;
+
+            padding: 38px;
+
+            box-shadow: 0 10px 30px rgba(20, 70, 60, 0.08);
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo-icon {
+            width: 64px;
+            height: 64px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 18px;
+
+            background: #e1f4ec;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #16805e;
+            font-size: 27px;
+        }
+
+        .login-logo h1 {
+            margin: 0;
+
+            color: #103f39;
+
+            font-size: 26px;
+        }
+
+        .login-logo p {
+            margin: 7px 0 0;
+
+            color: #7185a3;
+
+            font-size: 14px;
+        }
+
+        .login-group {
+            margin-bottom: 20px;
+        }
+
+        .login-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #174d45;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login-input {
+            position: relative;
+        }
+
+        .login-input i {
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8ba09b;
+        }
+
+        .login-input input {
+            width: 100%;
+            height: 48px;
+
+            padding: 0 15px 0 43px;
+
+            border: 1px solid #dce6e3;
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .login-input input:focus {
+            border-color: #1f7d5f;
+        }
+
+        .login-button {
+            width: 100%;
+            height: 48px;
+
+            margin-top: 5px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #1f7d5f;
+            color: white;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #17664d;
+        }
+
+        .login-info {
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #8a9aab;
+
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+
+            <div class="login-logo-icon">
+                <i class="fa-solid fa-chart-column"></i>
+            </div>
+
+            <h1>Sales Monitor</h1>
+
+            <p>
+                PT Mustika Ratu
+            </p>
+
+        </div>
+
+
+        <form onsubmit="login(event)">
+
+            <div class="login-group">
+
+                <label>
+                    Username
+                </label>
+
+                <div class="login-input">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Masukkan username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="login-group">
+
+                <label>
+                    Password
+                </label>
+
+                <div class="login-input">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Masukkan password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                Masuk
+            </button>
+
+        </form>
+
+
+        <div class="login-info">
+            Sales Monitoring System
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function login(event) {
+
+    event.preventDefault();
+
+    const username =
+        document.getElementById("username").value;
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if (username === "admin" && password === "admin123") {
+
+        window.location.href = "index.html";
+
+    } else {
+
+        alert(
+            "Username atau password salah!"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

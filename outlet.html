@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Outlet - Sales Monitor</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <div>
+                    <h2>Sales Monitor</h2>
+                    <span>PT Mustika Ratu</span>
+                </div>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <a href="index.html" class="menu-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="produk.html" class="menu-item">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Produk</span>
+                </a>
+
+                <a href="outlet.html" class="menu-item active">
+                    <i class="fa-solid fa-store"></i>
+                    <span>Outlet</span>
+                </a>
+
+                <a href="penjualan.html" class="menu-item">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Penjualan</span>
+                </a>
+
+                <a href="barang-masuk.html" class="menu-item">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Barang Masuk</span>
+                </a>
+
+                <a href="monitoring.html" class="menu-item">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Monitoring</span>
+                </a>
+
+                <a href="laporan.html" class="menu-item">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <span>Laporan</span>
+                </a>
+
+                <div class="menu-divider"></div>
+
+                <a href="pengaturan.html" class="menu-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Pengaturan</span>
+                </a>
+
+                <a href="#" class="menu-item" onclick="logout(event)">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <span>Logout</span>
+</a>
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main-content">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button class="menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Cari produk, outlet, atau data penjualan..."
+                    >
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="notification">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span>3</span>
+
+                    </div>
+
+
+                    <div class="profile">
+
+                        <div class="profile-avatar">
+                            A
+                        </div>
+
+                        <div class="profile-info">
+
+                            <strong>Admin</strong>
+                            <span>Administrator</span>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================
+                 CONTENT
+            ========================== -->
+
+            <section class="content">
+
+
+                <!-- PAGE HEADER -->
+
+                <div class="page-header">
+
+                    <div>
+
+                        <div class="breadcrumb">
+                            Dashboard / Outlet
+                        </div>
+
+                        <h1>Data Outlet</h1>
+
+                        <p>
+                            Kelola data outlet dan lokasi penjualan
+                            PT Mustika Ratu.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="btn-primary"
+                        onclick="openOutletModal()"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Tambah Outlet
+
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     SUMMARY
+                ========================== -->
+
+                <div class="summary-grid">
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon green">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Total Outlet</span>
+
+                            <strong id="totalOutlet">
+                                5
+                            </strong>
+
+                            <small>
+                                Outlet terdaftar
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon blue">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Outlet Aktif</span>
+
+                            <strong id="activeOutlet">
+                                4
+                            </strong>
+
+                            <small id="activeOutletNote">
+                                80,0% dari total outlet
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon orange">
+                            <i class="fa-solid fa-store-slash"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Outlet Tidak Aktif</span>
+
+                            <strong id="inactiveOutlet">
+                                1
+                            </strong>
+
+                            <small>
+                                Perlu diperiksa
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <div class="summary-icon purple">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Wilayah</span>
+
+                            <strong id="regionOutlet">
+                                5
+                            </strong>
+
+                            <small>
+                                Wilayah operasional
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =========================
+                     FILTER
+                ========================== -->
+
+                <div class="filter-section">
+
+
+                    <div class="filter-search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            id="searchOutlet"
+                            type="text"
+                            placeholder="Cari nama outlet atau kode outlet..."
+                        >
+
+                    </div>
+
+
+                    <select id="wilayahFilter">
+
+                        <option>
+                            Semua Wilayah
+                        </option>
+
+                        <option>
+                            Surabaya
+                        </option>
+
+                        <option>
+                            Sidoarjo
+                        </option>
+
+                        <option>
+                            Malang
+                        </option>
+
+                        <option>
+                            Kediri
+                        </option>
+
+                        <option>
+                            Gresik
+                        </option>
+
+                    </select>
+
+
+                    <select id="statusOutletFilter">
+
+                        <option>
+                            Semua Status
+                        </option>
+
+                        <option>
+                            Aktif
+                        </option>
+
+                        <option>
+                            Tidak Aktif
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="btn-reset"
+                        onclick="resetOutletFilter()"
+                    >
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     TABLE
+                ========================== -->
+
+                <div class="table-card">
+
+
+                    <div class="table-header">
+
+                        <div>
+
+                            <h2>
+                                <i class="fa-solid fa-store"></i>
+                                Daftar Outlet
+                            </h2>
+
+                            <p id="outletCount">
+                                Menampilkan 5 outlet
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn-export"
+                            onclick="exportOutletCSV()"
+                        >
+
+                            <i class="fa-solid fa-file-excel"></i>
+
+                            Export Excel
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Kode Outlet</th>
+                                    <th>Nama Outlet</th>
+                                    <th>Wilayah</th>
+                                    <th>Alamat</th>
+                                    <th>Penjualan</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="outletTable">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <div class="table-footer">
+
+                        <span id="outletFooterCount">
+                            Menampilkan 1–5 dari 5 outlet
+                        </span>
+
+
+                        <div class="pagination">
+
+                            <button>‹</button>
+
+                            <button class="active">
+                                1
+                            </button>
+
+                            <button>2</button>
+                            <button>3</button>
+                            <button>4</button>
+                            <button>5</button>
+
+                            <button>›</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="footer">
+
+                <span>
+                    © 2026 Sales Monitor. All rights reserved.
+                </span>
+
+                <span>
+                    PT Mustika Ratu |
+                    Kecantikan untuk Kehidupan yang Lebih Baik
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL TAMBAH / EDIT OUTLET
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="outletModal"
+    >
+
+        <div class="product-modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="outletModalTitle">
+                        Tambah Outlet
+                    </h2>
+
+                    <p>
+                        Masukkan informasi outlet
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    onclick="closeOutletModal()"
+                >
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="outletForm">
+
+                <input
+                    type="hidden"
+                    id="outletIndex"
+                >
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Kode Outlet
+                        </label>
+
+                        <input
+                            id="kodeOutlet"
+                            placeholder="Contoh: OUT006"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Nama Outlet
+                        </label>
+
+                        <input
+                            id="namaOutlet"
+                            placeholder="Nama outlet"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Wilayah
+                        </label>
+
+                        <select
+                            id="wilayahOutlet"
+                            required
+                        >
+
+                            <option value="">
+                                Pilih Wilayah
+                            </option>
+
+                            <option>
+                                Surabaya
+                            </option>
+
+                            <option>
+                                Sidoarjo
+                            </option>
+
+                            <option>
+                                Malang
+                            </option>
+
+                            <option>
+                                Kediri
+                            </option>
+
+                            <option>
+                                Gresik
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select
+                            id="statusOutlet"
+                            required
+                        >
+
+                            <option>
+                                Aktif
+                            </option>
+
+                            <option>
+                                Tidak Aktif
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Alamat
+                        </label>
+
+                        <input
+                            id="alamatOutlet"
+                            placeholder="Alamat lengkap outlet"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        onclick="closeOutletModal()"
+                    >
+
+                        Batal
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Simpan Outlet
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+<script>
+function logout(event) {
+    event.preventDefault();
+
+    const yakin = confirm(
+        "Apakah Anda yakin ingin logout?"
+    );
+
+    if (yakin) {
+        window.location.href = "login.html";
+    }
+}
+</script>
+</body>
+</html>
